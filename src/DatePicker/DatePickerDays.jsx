@@ -111,14 +111,14 @@ class DatePickerDays extends React.Component<PropType> {
     }
 
     return (
-      <div
+      <button
         key={`${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`}
         className={classes.join(' ')}
-        role="presentation"
+        role="button"
         onClick={() => {onSelectDate(date)}}
       >
         {date.getDate()}
-      </div>
+      </button>
     );
   }
 

@@ -1,8 +1,8 @@
 {
   "name": "react-sharp-datepicker",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Tiny datepicker for React",
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
@@ -15,13 +15,17 @@
     "datepicker",
     "picker"
   ],
-  "author": "Sharp3dges",
+  "author": {
+    "name": "Sharp3dges",
+    "email": "sharp3dges@outlook.com"
+  },
   "license": "GNU General Public License 3.0",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "css-loader": "^3.0.0",
