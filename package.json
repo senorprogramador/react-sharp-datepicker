@@ -2,13 +2,19 @@
   "name": "react-sharp-datepicker",
   "version": "1.0.0",
   "description": "Tiny datepicker for React",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["react", "react-js", "date", "datepicker", "picker"],
+  "keywords": [
+    "react",
+    "react-js",
+    "date",
+    "datepicker",
+    "picker"
+  ],
   "author": "Sharp3dges",
   "license": "GNU General Public License 3.0",
   "devDependencies": {

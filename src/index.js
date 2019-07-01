@@ -1,3 +1,5 @@
+// @flow
+
 import DatePicker, {
   DatePickerPropType,
   type PanelPositionEnumType,
