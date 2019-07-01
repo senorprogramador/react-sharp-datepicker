@@ -1,0 +1,62 @@
+.sharp-days-row {
+    display: inline-flex;
+}
+
+.sharp-day {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.sharp-day.next-or-previous-month,
+.sharp-day.excluded-date
+{
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.sharp-day.disabled-date {
+    pointer-events: none;
+    opacity: 0.25;
+}
+
+.sharp-day.selected-start-date.disabled-date,
+.sharp-day.selected-end-date.disabled-date
+{
+    opacity: 1;
+}
+
+.sharp-day.current-month:hover {
+    border-color: #48A0CB;
+}
+
+.sharp-day.today {
+    color: #48A0CB;
+}
+
+.sharp-day.selected-start-date,
+.sharp-day.selected-end-date,
+.sharp-day.selected-in-between-date
+{
+    background-color: #48A0CB;
+    color: #FFF;
+}
+
+.sharp-day.selected-start-date.has-end-date {
+    border-radius: 50% 0 0 50%;
+}
+
+.sharp-day.selected-end-date.has-start-date {
+    border-radius: 0 50% 50% 0;
+}
+
+.sharp-day.selected-in-between-date {
+    border-radius: 0;
+}

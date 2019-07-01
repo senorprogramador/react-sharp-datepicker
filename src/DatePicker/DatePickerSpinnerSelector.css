@@ -1,0 +1,31 @@
+.sharp-year-selector,
+.sharp-month-selector
+{
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.sharp-previous-year,
+.sharp-next-year,
+.sharp-previous-month,
+.sharp-next-month
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 25px;
+    height: 35px;
+    background-color: #48A0CB;
+    fill: #FFF;
+    border-radius: 5px;
+}
+
+.sharp-year,
+.sharp-month
+{
+    flex-grow: 1;
+    text-align: center;
+}

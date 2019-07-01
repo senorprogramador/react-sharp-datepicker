@@ -1,0 +1,12 @@
+html, body, div {
+    margin: 0;
+    padding: 0;
+}
+.app {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}

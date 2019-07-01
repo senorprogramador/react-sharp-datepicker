@@ -1,0 +1,25 @@
+.sharp-date-picker-wrapper {
+    position: relative;
+}
+
+.sharp-date-picker-button input {
+    border: none;
+    background-color: transparent;
+}
+
+.sharp-date-picker-button input:focus {
+    outline: none;
+}
+
+.sharp-date-picker-button {
+    padding: 0 20px;
+    border: 1px solid #CCC;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sharp-date-picker-button.open {
+    border: 1px solid #48A0CB;
+}
