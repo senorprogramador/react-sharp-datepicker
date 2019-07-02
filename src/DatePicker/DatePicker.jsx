@@ -28,7 +28,8 @@ export type DatePickerPropType = PopoverPropType & {
   leadingContent?: ?React.Node,
   icons?: DatePickerIconsType,
   iconColors?: DatePickerColorsType,
-  style?: {[key: string]: mixed}
+  style?: {[key: string]: mixed},
+  className?: string
 };
 
 type StateType = {
@@ -232,6 +233,7 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
       icons,
       colors,
       style,
+      className,
       leadingContent,
       selectedMonth,
       onSelectMonth,
@@ -265,11 +267,14 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
       }
     }
 
+    const classNames = className.split(' ');
+    classNames.push('sharp-date-picker-wrapper');
+
     return (
       <div
         ref={node => this.node = node}
         style={style}
-        className="sharp-date-picker-wrapper"
+        className={classNames.join(',')}
       >
         <div
           role="presentation"
@@ -468,6 +473,7 @@ DatePicker.defaultProps = {
   },
   iconColors: datePickerDefaultColors,
   style: {},
+  className: '',
 };
 
 export default DatePicker;
