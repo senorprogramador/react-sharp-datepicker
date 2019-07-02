@@ -156,8 +156,10 @@ panelPosition: {
  horizontal: 'auto' | 'before' | 'inside-min' | 'center' | 'inside-max' | 'after',
  vertical: 'auto' | 'before' | 'inside-min' | 'center' | 'inside-max' | 'after'
 }
-# With the panel position you can force the panel to open in a position relative to the button.
-# When set to auto, the DatePicker will calculate optimal position to keep the popover inside the parent.
+# With the panel position you can force the panel to open in a position
+# relative to the button.
+# When set to auto, the DatePicker will calculate optimal position
+# to keep the popover inside the parent.
 # Defaults to 'auto' for both horizontal and vertical.
 ```
 
