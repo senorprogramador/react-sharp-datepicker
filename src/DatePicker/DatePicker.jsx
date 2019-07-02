@@ -8,6 +8,7 @@ import LocaleManager from './utils/LocaleManager';
 import datePickerDefaultColors, { type DatePickerColorsType } from './DatePickerColors.jsx';
 
 import './DatePicker.css';
+import DateUtils from "./utils/DateUtils";
 
 export type PanelPositionEnumType = 'auto' | 'before' | 'inside-min' | 'center' | 'inside-max' | 'after';
 export type PanelPositionType = {
@@ -26,13 +27,15 @@ export type DatePickerPropType = PopoverPropType & {
   panelPosition?: PanelPositionType,
   leadingContent?: ?React.Node,
   icons?: DatePickerIconsType,
-  iconColors?: DatePickerColorsType
+  iconColors?: DatePickerColorsType,
+  style?: {[key: string]: mixed}
 };
 
 type StateType = {
   open: boolean,
   placeholder: string,
   format: string,
+  selectedDate: ?string,
   dateQuery: string
 };
 
@@ -53,12 +56,26 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
 
     this.state = {
       open: false,
+      selectedDate: null,
       dateQuery,
     };
   }
 
   componentDidMount() {
     document.addEventListener('click', this.onDocumentClick, false);
+  }
+
+  static getDerivedStateFromProps(nextProps: DatePickerPropType, prevState: StateType): ?StateType {
+    const { selectedDate } = nextProps;
+    const { prevSelectedDate, dateQuery } = prevState;
+
+    if (!selectedDate && prevSelectedDate && dateQuery !== '') {
+      console.log(`reset: ${dateQuery}`);
+      console.log(prevSelectedDate);
+      return { selectedDate, dateQuery: '' }
+    }
+
+    return { selectedDate };
   }
 
   componentDidUpdate() {
@@ -156,15 +173,45 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
   }
 
   getDateFromString(text: string): Date {
-    const { format } = this.props;
-    return moment(text, format).toDate();
+    const { format, disableDatesBefore, disableDatesAfter } = this.props;
+    let { disabledDates, enabledDates } = this.props;
+
+    let d = moment(text, format).toDate();
+    if (isNaN(d.getTime())) {
+      return d;
+    }
+
+    d = DateUtils.beginningOfDay(d);
+    if (disabledDates) {
+      disabledDates = disabledDates.map((disabled: Date): number => DateUtils.beginningOfDay(disabled).getTime());
+      if (disabledDates.includes(d.getTime())) {
+        return new Date('invalid');
+      }
+    }
+
+    if (enabledDates) {
+      enabledDates = enabledDates.map((enabled: Date): number => DateUtils.beginningOfDay(enabled).getTime());
+      if (!enabledDates.includes(d.getTime())) {
+        return new Date('invalid');
+      }
+    }
+
+    if (disableDatesBefore && d.getTime() < DateUtils.beginningOfDay(disableDatesBefore).getTime()) {
+      return new Date('invalid');
+    }
+
+    if (disableDatesAfter && d.getTime() > DateUtils.beginningOfDay(disableDatesAfter).getTime()) {
+      return new Date('invalid');
+    }
+
+    return d;
   }
 
   delayedFocusNextInput() {
     setTimeout(
       () => {
         const [input] = this.node.getElementsByClassName('sharp-date-input');
-        const focusable = Array.from(document.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+        const focusable = Array.from(document.querySelectorAll('[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
         const index = focusable.indexOf(input);
         if (!isNaN(index) && focusable[index + 1]) {
           focusable[index+1].focus();
@@ -184,6 +231,7 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
       format,
       icons,
       colors,
+      style,
       leadingContent,
       selectedMonth,
       onSelectMonth,
@@ -191,8 +239,10 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
       selectedDate,
       selectedStartDate,
       selectedEndDate,
-      includedDates,
-      excludedDates
+      enabledDates,
+      disabledDates,
+      disableDatesBefore,
+      disableDatesAfter,
     } = this.props;
 
     const {
@@ -218,6 +268,7 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
     return (
       <div
         ref={node => this.node = node}
+        style={style}
         className="sharp-date-picker-wrapper"
       >
         <div
@@ -287,7 +338,6 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
               });
 
               query = query.substring(0, format.length);
-
               if(query.length === format.length) {
                 const d = this.getDateFromString(query);
                 onSelectDate(d);
@@ -317,8 +367,10 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
             selectedDate={selectedDate}
             selectedStartDate={selectedStartDate}
             selectedEndDate={selectedEndDate}
-            includedDates={includedDates}
-            excludedDates={excludedDates}
+            enabledDates={enabledDates}
+            disabledDates={disabledDates}
+            disableDatesBefore={disableDatesBefore}
+            disableDatesAfter={disableDatesAfter}
           />
         )}
       </div>
@@ -402,7 +454,7 @@ DatePicker.defaultProps = {
       </svg>
     ),
     invalidIcon: (
-      <svg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
+      <svg width='16' height='16' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'>
         <path d='M439.396409,121.26 L447.186653,129.050244 C447.577783,129.441374 447.577783,130.075522 447.186653,
         130.466652 C446.795523,130.857782 446.161375,130.857782 445.770245,130.466652 L437.980001,
         122.676408 L430.189756,130.466652 C429.798626,130.857782 429.164479,130.857782 428.773348,
@@ -415,6 +467,7 @@ DatePicker.defaultProps = {
     ),
   },
   iconColors: datePickerDefaultColors,
+  style: {},
 };
 
 export default DatePicker;

@@ -18,8 +18,10 @@ export type PropType = {
   locale?: string,
   selectedStartDate?: ?Date,
   selectedEndDate?: ?Date,
-  includedDates?: ?Date[],
-  excludedDates?: ?Date[]
+  enabledDates?: ?Date[],
+  disabledDates?: ?Date[],
+  disableDatesBefore?: ?Date,
+  disableDatesAfter?: ?Date
 };
 
 class DatePickerPopover extends React.Component<PropType> {
@@ -33,9 +35,12 @@ class DatePickerPopover extends React.Component<PropType> {
       selectedDate,
       selectedStartDate,
       selectedEndDate,
-      includedDates,
-      excludedDates
+      enabledDates,
+      disabledDates,
+      disableDatesBefore,
+      disableDatesAfter,
     } = this.props;
+
     const month = selectedMonth || new Date();
 
     let firstDay = DateUtils.getPreviousMonday(DateUtils.startDateOfMonth(DateUtils.beginningOfDay(month)));
@@ -90,8 +95,10 @@ class DatePickerPopover extends React.Component<PropType> {
           selectedDate={selectedDate}
           selectedStartDate={selectedStartDate}
           selectedEndDate={selectedEndDate}
-          includedDates={includedDates}
-          excludedDates={excludedDates}
+          enabledDates={enabledDates}
+          disabledDates={disabledDates}
+          disableDatesBefore={disableDatesBefore}
+          disableDatesAfter={disableDatesAfter}
         />
       </div>
     );
@@ -103,8 +110,10 @@ DatePickerPopover.defaultProps = {
   selectedDate: null,
   selectedStartDate: null,
   selectedEndDate: null,
-  includedDates: null,
-  excludedDates: null,
+  enabledDates: null,
+  disabledDates: null,
+  disableDatesBefore: null,
+  disableDatesAfter: null,
 };
 
 export default DatePickerPopover;

@@ -1,10 +1,12 @@
 .sharp-date-picker-wrapper {
     position: relative;
+    font-family: "Open Sans", sans-serif;
 }
 
 .sharp-date-picker-button input {
     border: none;
     background-color: transparent;
+    flex-grow: 1;
 }
 
 .sharp-date-picker-button input:focus {

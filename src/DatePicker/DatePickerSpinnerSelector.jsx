@@ -16,7 +16,7 @@ const DatePickerSpinnerSelector = (props: PropType): React.Node => {
   return (
     <div className={`sharp-${type}-selector`}>
       <button
-        className={`sharp-previous-${type}`}
+        className={`sharp-spinner-button sharp-previous-${type}`}
         role="button"
         onClick={onPrevious}
       >
@@ -27,7 +27,7 @@ const DatePickerSpinnerSelector = (props: PropType): React.Node => {
       </button>
       <div className="sharp-month">{label}</div>
       <button
-        className={`sharp-next-${type}`}
+        className={`sharp-spinner-button sharp-next-${type}`}
         role="button"
         onClick={onNext}
       >

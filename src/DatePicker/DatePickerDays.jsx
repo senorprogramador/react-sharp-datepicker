@@ -13,8 +13,10 @@ type PropType = {
   selectedDate: ?Date,
   selectedStartDate: ?Date,
   selectedEndDate: ?Date,
-  includedDates: ?Date[],
-  excludedDates: ?Date[]
+  enabledDates: ?Date[],
+  disabledDates: ?Date[],
+  disableDatesBefore: ?Date,
+  disableDatesAfter: ?Date
 };
 
 class DatePickerDays extends React.Component<PropType> {
@@ -28,8 +30,10 @@ class DatePickerDays extends React.Component<PropType> {
       selectedDate,
       selectedStartDate,
       selectedEndDate,
-      includedDates,
-      excludedDates,
+      enabledDates,
+      disabledDates,
+      disableDatesBefore,
+      disableDatesAfter,
     } = this.props;
 
     const today = DateUtils.beginningOfDay(new Date());
@@ -46,18 +50,20 @@ class DatePickerDays extends React.Component<PropType> {
       selectedEndDate = DateUtils.beginningOfDay(selectedEndDate);
     }
 
-    if (includedDates) {
-      includedDates = includedDates.map((d: Date): number => {
-        let includedDate = DateUtils.beginningOfDay(d);
-        return includedDate.getTime();
-      });
+    if (enabledDates) {
+      enabledDates = enabledDates.map((d: Date): number => DateUtils.beginningOfDay(d).getTime());
     }
 
-    if (excludedDates) {
-      excludedDates = excludedDates.map((d: Date): number => {
-        let excludedDate = DateUtils.beginningOfDay(d);
-        return excludedDate.getTime();
-      });
+    if (disabledDates) {
+      disabledDates = disabledDates.map((d: Date): number => DateUtils.beginningOfDay(d).getTime());
+    }
+
+    if (disableDatesBefore) {
+      disableDatesBefore = DateUtils.beginningOfDay(disableDatesBefore);
+    }
+
+    if (disableDatesAfter) {
+      disableDatesAfter = DateUtils.beginningOfDay(disableDatesAfter);
     }
 
     const classes = ['sharp-day'];
@@ -106,7 +112,15 @@ class DatePickerDays extends React.Component<PropType> {
       classes.push('selected-in-between-date');
     }
 
-    if((includedDates && !includedDates.includes(date.getTime())) || (excludedDates && excludedDates.includes(date.getTime()))) {
+    if((enabledDates && !enabledDates.includes(date.getTime())) || (disabledDates && disabledDates.includes(date.getTime()))) {
+      classes.push('excluded-date');
+    }
+
+    if (disableDatesBefore && date.getTime() < disableDatesBefore.getTime()) {
+      classes.push('excluded-date');
+    }
+
+    if (disableDatesAfter && date.getTime() > disableDatesAfter.getTime()) {
       classes.push('excluded-date');
     }
 
