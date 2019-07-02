@@ -83,19 +83,19 @@ DatePicker exposes the following properties for you to set:
 ```
 locale: string
 # Controls the display of the name of the month and the days of the week in the popover.
-# defaults to: `'en-US'`
+# defaults to: 'en-US'
 ```
 
 ```
 placeholder: string
 # Displays a placeholder when input is empty.
-# defaults to `'dd-mm-yyyy'`
+# defaults to 'dd-mm-yyyy'
 ```
 
 ```
 format: string
 # The format to use for input text.
-# defaults to `'DD-MM-YYYY'`
+# defaults to 'DD-MM-YYYY'
 ```
 
 ```
@@ -158,7 +158,7 @@ panelPosition: {
 }
 # With the panel position you can force the panel to open in a position relative to the button.
 # When set to auto, the DatePicker will calculate optimal position to keep the popover inside the parent.
-# Defaults to `'auto'` for both horizontal and vertical.
+# Defaults to 'auto' for both horizontal and vertical.
 ```
 
 ```
