@@ -106,13 +106,17 @@ class App extends React.Component<{},StateType> {
             locale="nl-NL"
             placeholder="DD-MM-YYYY"
             format="DD-MM-YYYY"
-            onSelectDate={(selectedStartDate: Date) => {
-              this.setState({ section1: { ...section1, selectedStartDate } });
+            onSelectDate={(d: Date) => {
+              const section = section1;
+              section.selectedStartDate = d;
+              this.setState({ section1: section });
             }}
             selectedMonth={section1.month}
             selectedDate={section1.selectedStartDate}
             onSelectMonth={(month: Date) => {
-              this.setState({ section1: {...section1, month } });
+              const section = section1;
+              section.month = month;
+              this.setState({ section1: section });
             }}
           />
           <div>English locale for weekdays and months:</div>
@@ -120,13 +124,17 @@ class App extends React.Component<{},StateType> {
             locale="en-US"
             placeholder="MM/DD/YYYY"
             format="MM/DD/YYYY"
-            onSelectDate={(selectedStartDate: Date) => {
-              this.setState({ section2: { ...section2, selectedStartDate } });
+            onSelectDate={(d: Date) => {
+              const section = section2;
+              section.selectedStartDate = d;
+              this.setState({ section2: section });
             }}
             selectedMonth={section2.month}
             selectedDate={section2.selectedStartDate}
             onSelectMonth={(month: Date) => {
-              this.setState({ section2: {...section2, month } });
+              const section = section2;
+              section.month = month;
+              this.setState({ section2: section });
             }}
           />
           <div>Preset dates get filled automatically:</div>
@@ -134,13 +142,17 @@ class App extends React.Component<{},StateType> {
             locale="en-US"
             placeholder="DD-MM-YYYY"
             format="DD-MM-YYYY"
-            onSelectDate={(selectedStartDate: Date) => {
-              this.setState({ section3: { ...section3, selectedStartDate } });
+            onSelectDate={(d: Date) => {
+              const section = section3;
+              section.selectedStartDate = d;
+              this.setState({ section3: section });
             }}
             selectedMonth={section3.month}
             selectedDate={section3.selectedStartDate}
             onSelectMonth={(month: Date) => {
-              this.setState({ section3: {...section3, month } });
+              const section = section3;
+              section.month = month;
+              this.setState({ section3: section });
             }}
           />
         </div>
@@ -151,13 +163,17 @@ class App extends React.Component<{},StateType> {
             locale="en-US"
             placeholder="DD-MM-YYYY"
             format="DD-MM-YYYY"
-            onSelectDate={(selectedStartDate: Date) => {
-              this.setState({ section4: { ...section4, selectedStartDate } });
+            onSelectDate={(d: Date) => {
+              const section = section4;
+              section.selectedStartDate = d;
+              this.setState({ section4: section });
             }}
             selectedMonth={section4.month}
             selectedDate={section4.selectedStartDate}
             onSelectMonth={(month: Date) => {
-              this.setState({ section4: {...section4, month } });
+              const section = section4;
+              section.month = month;
+              this.setState({ section4: section });
             }}
             disableDatesBefore={ new Date() }
           />
@@ -166,13 +182,17 @@ class App extends React.Component<{},StateType> {
             locale="en-US"
             placeholder="DD-MM-YYYY"
             format="DD-MM-YYYY"
-            onSelectDate={(selectedStartDate: Date) => {
-              this.setState({ section5: { ...section5, selectedStartDate } });
+            onSelectDate={(d: Date) => {
+              const section = section5;
+              section.selectedStartDate = d;
+              this.setState({ section6: section });
             }}
             selectedMonth={section5.month}
             selectedDate={section5.selectedStartDate}
             onSelectMonth={(month: Date) => {
-              this.setState({ section5: {...section5, month } });
+              const section = section5;
+              section.month = month;
+              this.setState({ section5: section });
             }}
             disableDatesAfter={ new Date() }
           />
@@ -181,13 +201,17 @@ class App extends React.Component<{},StateType> {
             locale="en-US"
             placeholder="DD-MM-YYYY"
             format="DD-MM-YYYY"
-            onSelectDate={(selectedStartDate: Date) => {
-              this.setState({ section6: { ...section6, selectedStartDate } });
+            onSelectDate={(d: Date) => {
+              const section = section6;
+              section.selectedStartDate = d;
+              this.setState({ section6: section });
             }}
             selectedMonth={section6.month}
             selectedDate={section6.selectedStartDate}
             onSelectMonth={(month: Date) => {
-              this.setState({ section6: {...section6, month } });
+              const section = section6;
+              section.month = month;
+              this.setState({ section6: section });
             }}
             disabledDates={ enabledAndDisabledDates }
           />
@@ -196,13 +220,17 @@ class App extends React.Component<{},StateType> {
             locale="en-US"
             placeholder="DD-MM-YYYY"
             format="DD-MM-YYYY"
-            onSelectDate={(selectedStartDate: Date) => {
-              this.setState({ section7: { ...section7, selectedStartDate } });
+            onSelectDate={(d: Date) => {
+              const section = section7;
+              section.selectedStartDate = d;
+              this.setState({ section7: section });
             }}
             selectedMonth={section7.month}
             selectedDate={section7.selectedStartDate}
             onSelectMonth={(month: Date) => {
-              this.setState({ section7: {...section7, month } });
+              const section = section7;
+              section.month = month;
+              this.setState({ section7: section });
             }}
             enabledDates={ enabledAndDisabledDates }
           />
@@ -217,15 +245,19 @@ class App extends React.Component<{},StateType> {
               locale="en-US"
               placeholder="DD-MM-YYYY"
               format="DD-MM-YYYY"
-              onSelectDate={(selectedStartDate: Date) => {
-                this.setState({ section8: { ...section8, selectedStartDate } });
+              onSelectDate={(d: Date) => {
+                const section = section8;
+                section.selectedStartDate = d;
+                this.setState({ section8: section });
               }}
               selectedMonth={section8.month}
               selectedDate={section8.selectedStartDate}
               selectedStartDate={section8.selectedStartDate}
               selectedEndDate={section8.selectedEndDate}
               onSelectMonth={(month: Date) => {
-                this.setState({ section8: {...section8, month } });
+                const section = section8;
+                section.month = month;
+                this.setState({ section8: section });
               }}
             />
             <button
@@ -245,15 +277,19 @@ class App extends React.Component<{},StateType> {
               locale="en-US"
               placeholder="DD-MM-YYYY"
               format="DD-MM-YYYY"
-              onSelectDate={(selectedEndDate: Date) => {
-                this.setState({ section8: { ...section8, selectedEndDate } });
+              onSelectDate={(d: Date) => {
+                const section = section8;
+                section.selectedEndDate = d;
+                this.setState({ section8: section });
               }}
               selectedMonth={section8.month}
               selectedDate={section8.selectedEndDate}
               selectedStartDate={section8.selectedStartDate}
               selectedEndDate={section8.selectedEndDate}
               onSelectMonth={(month: Date) => {
-                this.setState({ section8: {...section8, month } });
+                const section = section8;
+                section.month = month;
+                this.setState({ section8: section });
               }}
             />
             <button

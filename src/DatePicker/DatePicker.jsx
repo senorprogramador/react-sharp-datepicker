@@ -262,7 +262,9 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
     let iconColor = colorPalette.calendarIconColor;
 
     if (selectedDate) {
-      if (isNaN(selectedDate)) {
+      if (isNaN(selectedDate)
+        || (selectedStartDate && selectedEndDate
+          && DateUtils.beginningOfDay(selectedStartDate.getTime()) > DateUtils.beginningOfDay(selectedEndDate).getTime())) {
         icon = icons.invalidIcon;
         iconColor = colorPalette.invalidIconColor;
       } else {
@@ -349,8 +351,8 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
               query = query.substring(0, format.length);
               if(query.length === format.length) {
                 const d = this.getDateFromString(query);
+                onSelectDate(d);
                 if(!isNaN(d.getTime())) {
-                  onSelectDate(d);
                   onSelectMonth(d);
                   this.delayedFocusNextInput();
                 }
