@@ -69,11 +69,9 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
 
   static getDerivedStateFromProps(nextProps: DatePickerPropType, prevState: StateType): ?StateType {
     const { selectedDate } = nextProps;
-    const { prevSelectedDate, dateQuery } = prevState;
+    const { selectedDate: prevSelectedDate } = prevState;
 
-    if (!selectedDate && prevSelectedDate && dateQuery !== '') {
-      console.log(`reset: ${dateQuery}`);
-      console.log(prevSelectedDate);
+    if (!selectedDate && prevSelectedDate) {
       return { selectedDate, dateQuery: '' }
     }
 
@@ -351,12 +349,12 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
               query = query.substring(0, format.length);
               if(query.length === format.length) {
                 const d = this.getDateFromString(query);
-                onSelectDate(d);
                 if(!isNaN(d.getTime())) {
+                  onSelectDate(d);
+                  onSelectMonth(d);
                   this.delayedFocusNextInput();
                 }
               }
-
               this.setState({ dateQuery: query });
             }}
           />

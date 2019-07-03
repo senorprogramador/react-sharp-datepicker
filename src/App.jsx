@@ -261,7 +261,7 @@ class App extends React.Component<{},StateType> {
               role="button"
               tabIndex={-1}
               onClick={() => { this.setState({ section8: {...section8, selectedEndDate: null } }); }}
-              disabled={ section8.selectedStartDate === null }
+              disabled={ section8.selectedEndDate === null }
             >
               Clear
             </button>
