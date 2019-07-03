@@ -172,6 +172,11 @@ leadingContent: React.Node
 ```
 
 ```
+nextFocusable: React.Ref
+# Optionally set a React ref to receive focus after date input.
+```
+
+```
 icons: {
     calendarIcon: React.Node,
     validIcon: React.Node,

@@ -28,6 +28,7 @@ export type DatePickerPropType = PopoverPropType & {
   leadingContent?: ?React.Node,
   icons?: DatePickerIconsType,
   iconColors?: DatePickerColorsType,
+  nextFocusable?: ?React.Ref,
   style?: {[key: string]: mixed},
   className?: string
 };
@@ -209,19 +210,22 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
   }
 
   delayedFocusNextInput() {
-    setTimeout(
-      () => {
-        const [input] = this.node.getElementsByClassName('sharp-date-input');
-        const focusable = Array.from(document.querySelectorAll('[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
-        const index = focusable.indexOf(input);
-        if (!isNaN(index) && focusable[index + 1]) {
-          focusable[index+1].focus();
-        } else {
-          input.blur();
-        }
-      },
-      200
-    );
+    const { nextFocusable } = this.props;
+    const [input] = this.node.getElementsByClassName('sharp-date-input');
+    setTimeout(() => {
+      input.blur();
+
+      if (nextFocusable) {
+        const focusable = Array.from(nextFocusable.node.querySelectorAll('[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+        setTimeout(
+          () => {
+            nextFocusable.node.focus();
+            if (focusable.length) {
+              focusable[0].focus();
+            }
+          }, 100);
+      }
+    }, 150);
   }
 
   render(): React.Node {
@@ -267,14 +271,14 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
       }
     }
 
-    const classNames = className.split(' ');
+    const classNames = className.split(' ').filter((cls: string): boolean => cls !== '');
     classNames.push('sharp-date-picker-wrapper');
 
     return (
       <div
         ref={node => this.node = node}
         style={style}
-        className={classNames.join(',')}
+        className={classNames.join(' ')}
       >
         <div
           role="presentation"
@@ -391,6 +395,7 @@ DatePicker.defaultProps = {
     horizontal: 'auto',
     vertical: 'auto',
   },
+  nextFocusable: null,
   icons: {
     calendarIcon: (
       <svg width='20' height='20' viewBox='-1 -1 25 25' xmlns='http://www.w3.org/2000/svg'>
