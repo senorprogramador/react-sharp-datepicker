@@ -26,6 +26,8 @@ npm i -S react-sharp-datepicker
 
 [![Edit React Sharp DatePicker](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/festive-forest-gyfvy?fontsize=14)
 
+[![View on NPM](https://img.icons8.com/color/48/000000/npm.png)](https://www.npmjs.com/package/react-sharp-datepicker)
+
 Most basic datepicker: (`month` and `date` are `Date` instances in the local state)
 ```JSX
 const {
