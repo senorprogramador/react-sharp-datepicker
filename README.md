@@ -11,6 +11,8 @@ With this datepicker you can:
 6. disable all dates after a certain date
 7. clear a selected date
 
+_Please star if you like this software... :)_
+
 # Prerequisites:
 1. React, Babel
 2. Moment (TODO: remove)
@@ -202,4 +204,82 @@ style: {[key: string]: mixed}
 ```
 className: string
 # Optionally set additional classNames on the wrapper.
+```
+
+# Styling
+See stylesheet below for all of the stylable properties:
+
+```css
+/* Upper-most class */
+.sharp-date-picker-wrapper {
+}
+
+/* Main button */
+.sharp-date-picker-button {
+}
+.sharp-date-picker-button.open {
+}
+
+/* Main button input */
+.sharp-date-picker-button input {
+}
+.sharp-date-picker-button input:focus {
+}
+
+/* Popover */
+.sharp-date-picker-popover {
+}
+
+/* Popover => Year and Month selectors */
+.sharp-year-selector {
+}
+.sharp-month-selector {
+}
+
+/* Year/Month => previous and next button */
+.sharp-spinner-button {
+}
+.sharp-spinner-button:focus {
+}
+.sharp-spinner-button:active {
+}
+
+/* Year/Month => labels */
+.sharp-year {
+}
+.sharp-month {
+}
+
+/* Popover => Days row */
+.sharp-days-row {
+}
+
+/* Popover => Day */
+.sharp-day {
+}
+/* Day => disabled variants */
+.sharp-day.next-or-previous-month {
+}
+.sharp-day.excluded-date {
+}
+.sharp-day.disabled-date {
+}
+
+/* Day => current Date */
+.sharp-day.today {
+}
+
+/* Day => selection variants */
+.sharp-day.selected-start-date {
+}
+.sharp-day.selected-end-date {
+}
+.sharp-day.selected-in-between-date {
+}
+
+/* Day => control border radius for first and last range selections */
+.sharp-day.selected-start-date.has-end-date {
+}
+.sharp-day.selected-end-date.has-start-date {
+}
 ```
