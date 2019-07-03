@@ -172,8 +172,8 @@ leadingContent: React.Node
 ```
 
 ```
-nextFocusable: React.Ref
-# Optionally set a React ref to receive focus after date input.
+nextFocusable: () => React.Ref
+# Optionally set a callback returning a  React ref to receive focus after date input.
 ```
 
 ```
