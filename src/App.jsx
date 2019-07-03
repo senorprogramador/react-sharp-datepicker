@@ -213,7 +213,7 @@ class App extends React.Component<{},StateType> {
           <div style={{ display: 'flex' }}>
             <DatePicker
               key="range-start-picker"
-              nextFocusable={this.dateEndPicker}
+              nextFocusable={(): React.Ref => this.dateEndPicker}
               locale="en-US"
               placeholder="DD-MM-YYYY"
               format="DD-MM-YYYY"

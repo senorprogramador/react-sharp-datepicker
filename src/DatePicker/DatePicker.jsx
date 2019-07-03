@@ -28,7 +28,7 @@ export type DatePickerPropType = PopoverPropType & {
   leadingContent?: ?React.Node,
   icons?: DatePickerIconsType,
   iconColors?: DatePickerColorsType,
-  nextFocusable?: ?React.Ref,
+  nextFocusable?: () => ?React.Ref,
   style?: {[key: string]: mixed},
   className?: string
 };
@@ -211,15 +211,17 @@ class DatePicker extends React.Component<DatePickerPropType, StateType> {
 
   delayedFocusNextInput() {
     const { nextFocusable } = this.props;
+    const next = nextFocusable();
+
     const [input] = this.node.getElementsByClassName('sharp-date-input');
     setTimeout(() => {
       input.blur();
 
-      if (nextFocusable) {
-        const focusable = Array.from(nextFocusable.node.querySelectorAll('[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
+      if (next) {
+        const focusable = Array.from(next.node.querySelectorAll('[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'));
         setTimeout(
           () => {
-            nextFocusable.node.focus();
+            next.node.focus();
             if (focusable.length) {
               focusable[0].focus();
             }
@@ -395,7 +397,7 @@ DatePicker.defaultProps = {
     horizontal: 'auto',
     vertical: 'auto',
   },
-  nextFocusable: null,
+  nextFocusable: () => null,
   icons: {
     calendarIcon: (
       <svg width='20' height='20' viewBox='-1 -1 25 25' xmlns='http://www.w3.org/2000/svg'>
