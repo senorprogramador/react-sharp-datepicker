@@ -112,7 +112,7 @@ class DatePickerDays extends React.Component<PropType> {
       classes.push('selected-in-between-date');
     }
 
-    if((enabledDates && !enabledDates.includes(date.getTime())) || (disabledDates && disabledDates.includes(date.getTime()))) {
+    if((enabledDates !== null && !enabledDates.includes(date.getTime())) || (disabledDates !== null && disabledDates.includes(date.getTime()))) {
       classes.push('excluded-date');
     }
 
