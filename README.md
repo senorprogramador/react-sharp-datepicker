@@ -1,3 +1,7 @@
+# Discontinued
+This package is not actively developed and contains no security updates. As it may be used in projects I'll leave it here.
+You should not use this package in any production app.
+
 # react-sharp-datepicker
 Tiny datepicker for React(-js), currently uses moment to format dates. Will be removed when ready.
 No nonsense datepicker to keep development up-to-speed.
